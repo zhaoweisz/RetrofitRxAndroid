@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RetrofitRxAndroid</string>
+    <string name="fab_behavior">com.yyk.retrofitrxandroid.widget.MyFabBehavior</string>
+</resources>
