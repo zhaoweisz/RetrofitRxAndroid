@@ -20,7 +20,7 @@ public class WebViewActivity extends AppCompatActivity implements WebViewActivit
 
     private WebView mWebView;
     private Bundle mBundle;
-    private WebViewClient mClient;
+    private MyWebViewClient mClient;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
@@ -28,9 +28,14 @@ public class WebViewActivity extends AppCompatActivity implements WebViewActivit
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        showProgress();
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mWebView = (WebView) findViewById(R.id.web_view);
         mBundle = getIntent().getExtras();
+        String url = mBundle.getString("url");
+        if (!url.isEmpty()) {
+            mWebView.loadUrl(url);
+        }
         mClient = new MyWebViewClient();
         mWebView.setWebViewClient(mClient);
 //        mWebView.setWebChromeClient(new WebChromeClient() {
@@ -41,11 +46,7 @@ public class WebViewActivity extends AppCompatActivity implements WebViewActivit
 //                }
 //            }
 //        });
-        String url = mBundle.getString("url");
-        if (!url.isEmpty()) {
-            mWebView.loadUrl(url);
-            showProgress();
-        }
+
     }
 
     @Override
